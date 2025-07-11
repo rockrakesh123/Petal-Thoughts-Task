@@ -1,0 +1,26 @@
+# Terraform local state and backup
+*.tfstate
+*.tfstate.backup
+
+# Terraform crash log
+crash.log
+
+# Terraform variable override files (optional, but can contain secrets)
+*.tfvars
+
+# .terraform directory (stores plugins and state info)
+.terraform/
+
+# Terraform lock file (optional, ignore if you don’t want it under version control)
+.terraform.lock.hcl
+
+# Zip or binary files
+*.zip
+terraform_*.zip
+
+# Ignore IDE/editor files (optional)
+.vscode/
+.idea/
+*.swp
+*.swo
+
