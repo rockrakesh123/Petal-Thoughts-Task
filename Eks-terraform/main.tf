@@ -1,4 +1,12 @@
-
+# initilizing the backend
+terraform{
+  backend "s3"{
+    bucket = "peral-thoughts-rkunda"
+    key = "Terraform/terraform.tfstate" // path where tf state file should be stored in s3 bucket.
+    region = "us-east-1"
+    encrypt = true
+  }
+}
 # Create a VPC
 resource "aws_vpc" "medusa_vpc" {
   cidr_block = "10.0.0.0/16"
