@@ -51,6 +51,7 @@ jobs:
       env:
         AWS_REGION: us-east-1
         AWS_DEFAULT_REGION: us-east-1
+        TERRAFORM_CLI_PATH: /home/runner/work/_temp/958a3054-61c0-43da-b27a-9cfb842c02b3
 
 
     - name: Build and Tag Docker image
