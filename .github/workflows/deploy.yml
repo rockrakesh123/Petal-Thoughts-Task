@@ -43,13 +43,13 @@ jobs:
 
     - name: Build and Tag Docker image
       run: |
-        IMAGE_URI=207268090422.dkr.ecr.us-east-1.amazonaws.com/medusa-backend:latest
+        IMAGE_URI=043509775301.dkr.ecr.us-east-1.amazonaws.com/medusa-backend:latest
         docker build -t medusa-backend:latest .
         docker tag medusa-backend:latest $IMAGE_URI
 
     - name: Push Docker image to ECR
       run: |
-        IMAGE_URI=207268090422.dkr.ecr.us-east-1.amazonaws.com/medusa-backend:latest
+        IMAGE_URI=043509775301.dkr.ecr.us-east-1.amazonaws.com/medusa-backend:latest
         docker push $IMAGE_URI
 
     - name: Update ECS Service
