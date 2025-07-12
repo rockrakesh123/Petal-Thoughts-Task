@@ -71,33 +71,3 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-    - name: Log in to Amazon ECR
-      uses: aws-actions/amazon-ecr-login@v1
-      env:
-       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-       AWS_REGION: us-east-1
-       AWS_DEFAULT_REGION: us-east-1
-    
-    - name: Remove Docker images from ECR
-      run: |
-        # List all image tags
-        IMAGE_TAGS=$(aws ecr list-images --repository-name medusa-backend --query 'imageIds[*].imageTag' --output text --region us-east-1)
-        if [ -n "$IMAGE_TAGS" ]; then
-          # Batch delete images
-          aws ecr batch-delete-image --repository-name medusa-backend --image-ids imageTag=$IMAGE_TAGS --region us-east-1
-        fi
-    - name: Remove Docker containers
-      run: |
-        docker ps -a -q | xargs docker rm -f || true
-    - name: Remove Docker volumes
-      run: |
-        docker volume ls -q | xargs docker volume rm || true 
-        
-    - name: Terraform destroy
-      run: terraform destroy -auto-approve
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      working-directory: ./Eks-terraform
