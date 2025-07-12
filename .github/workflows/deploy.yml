@@ -47,7 +47,11 @@ jobs:
         mask-password: false
         registry-type: private
         skip-logout: false
+      env:
+        AWS_REGION: us-east-1
+        AWS_DEFAULT_REGION: us-east-1
 
+        
     - name: Build and Tag Docker image
       run: |
         IMAGE_URI=043509775301.dkr.ecr.us-east-1.amazonaws.com/medusa-backend:latest
